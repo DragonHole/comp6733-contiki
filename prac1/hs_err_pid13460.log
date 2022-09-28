@@ -1,0 +1,914 @@
+#
+# An unexpected error has been detected by Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x9ca09acc, pid=13460, tid=2862345024
+#
+# Java VM: Java HotSpot(TM) Client VM (11.3-b02 mixed mode linux-x86)
+# Problematic frame:
+# C  [libjscxds110.so+0x11acc]  GDBFlushPackets+0xf
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0925fc00):  JavaThread "polling thread" daemon [_thread_in_native, id=13480, stack(0xaa96e000,0xaa9bf000)]
+
+siginfo:si_signo=SIGSEGV: si_errno=0, si_code=1 (SEGV_MAPERR), si_addr=0x4209d070
+
+Registers:
+EAX=0x4209d058, EBX=0x9ca5b000, ECX=0x00000001, EDX=0x00000000
+ESP=0xaa9bd1fc, EBP=0xaa9bd20c, ESI=0x00000004, EDI=0x00000000
+EIP=0x9ca09acc, CR2=0x4209d070, EFLAGS=0x00010286
+
+Top of Stack: (sp=0xaa9bd1fc)
+0xaa9bd1fc:   9cdf5d18 00000000 b7784000 4209d058
+0xaa9bd20c:   aa9bd25c 9ca1cda1 4209d058 aa9bd22c
+0xaa9bd21c:   9cfa7678 98452708 00000000 00000000
+0xaa9bd22c:   00000000 00000101 b7780d37 9b2ed000
+0xaa9bd23c:   00000000 00000000 00000000 4209d058
+0xaa9bd24c:   aa9bd2c1 009bd29c 00000000 9ca5b000
+0xaa9bd25c:   aa9bd2bc 9ca1d8ba 4209d058 9ca5c060
+0xaa9bd26c:   00000029 9ca5c060 00000004 00000000 
+
+Instructions: (pc=0x9ca09acc)
+0x9ca09abc:   c3 55 89 e5 83 ec 10 8b 45 08 89 45 fc 8b 45 fc
+0x9ca09acc:   c7 40 18 00 00 00 00 8b 45 fc c7 80 58 10 00 00 
+
+Stack: [0xaa96e000,0xaa9bf000],  sp=0xaa9bd1fc,  free space=316k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libjscxds110.so+0x11acc]  GDBFlushPackets+0xf
+C  [libjscxds110.so+0x24da1]  XDS_Execute+0x63
+C  [libjscxds110.so+0x258ba]  XDS_SetAmbleDelay+0x109
+C  [libjscxds110.so+0x12347]  _Z17jsc_PutAmbleDelayP10JSC_InformP18JSC_JtagAmbleDelay+0x1a2
+C  [libxdsroute.so+0x146fe]  _Z15rtr_apply_ambleP10RTR_InformP18JSC_JtagAmbleDelay+0x34
+C  [libxdsroute.so+0x14954]  _Z15rtr_AmbleUpdateP10RTR_Informj+0x89
+C  [libxdsroute.so+0x14e79]  _Z22rtr_SingleDeviceSelectP10RTR_Inform10RTR_Actionjj+0x211
+C  [libxdsfast3.so+0x17461]  _Z11smg_SetPathP10SMG_InformP7sc_args+0xe0
+C  [libxdsfast3.so+0x2200b]  SMG_call+0xaf
+C  [libtixds510icepick_c.so+0xad82]  PTI_EmuSetPath+0x8e
+C  [libtixds510icepick_c.so+0xabf2]  PTI_EmuInitScan+0x1a9
+C  [libtixds510icepick_c.so+0xf29c]  PTI_connect+0x90
+C  [libtixds510icepick_c.so+0x121cc]  TRG_connect+0x14a
+C  [libtixds510icepick_c.so+0x9ccb]  Connect+0x4f
+C  [libtixds510icepick_c.so+0x9d7b]  GTI_CONNECT+0x44
+C  [libDebugServer.so+0x27ebe3]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  com.ti.xpcom.internal.XPCOMJavaProxy.callXPCOMMethod(JLjava/lang/String;[Ljava/lang/Object;)Ljava/lang/Object;+0
+j  com.ti.xpcom.internal.XPCOMJavaProxy.invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;+108
+j  $Proxy2.pollThreadMain()J+9
+j  com.ti.debug.engine.cce.CCEDebugEngine.pollThreadMain()J+7
+j  com.ti.debug.engine.cce.CCEDebugEngine$PollingThread.run()V+125
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x9cd5ac00 JavaThread "Thread-16" [_thread_blocked, id=16227, stack(0x9e54d000,0x9e59e000)]
+  0x0908e400 JavaThread "ModalContext" [_thread_blocked, id=16226, stack(0x9d0df000,0x9d130000)]
+  0x9cd3ac00 JavaThread "[ThreadPool Manager] - Idle Thread" daemon [_thread_blocked, id=13505, stack(0xaa9dc000,0xaaa2d000)]
+  0x9843c400 JavaThread "arm properties event broadcaster" daemon [_thread_blocked, id=13498, stack(0x9b6f0000,0x9b741000)]
+  0x9cdfb000 JavaThread "Thread-8" daemon [_thread_in_native, id=13497, stack(0x97107000,0x97908000)]
+  0x08ee6400 JavaThread "Worker-1" [_thread_blocked, id=13482, stack(0x9d130000,0x9d181000)]
+=>0x0925fc00 JavaThread "polling thread" daemon [_thread_in_native, id=13480, stack(0xaa96e000,0xaa9bf000)]
+  0x08fcf000 JavaThread "Worker-0" [_thread_blocked, id=13479, stack(0xab994000,0xab9e5000)]
+  0x08e66000 JavaThread "xpcom dispose thread" daemon [_thread_blocked, id=13475, stack(0xab44a000,0xab49b000)]
+  0xacc51400 JavaThread "Worker-JM" [_thread_blocked, id=13474, stack(0xab8e4000,0xab935000)]
+  0x08e25000 JavaThread "[Timer] - Main Queue Handler" daemon [_thread_blocked, id=13473, stack(0xab943000,0xab994000)]
+  0xacc06c00 JavaThread "Framework Event Dispatcher" daemon [_thread_blocked, id=13471, stack(0xab9f1000,0xaba42000)]
+  0x08e62c00 JavaThread "Start Level Event Dispatcher" daemon [_thread_blocked, id=13470, stack(0xaba44000,0xaba95000)]
+  0x08e4d000 JavaThread "State Data Manager" daemon [_thread_blocked, id=13469, stack(0xaba95000,0xabae6000)]
+  0x08e19c00 JavaThread "Framework Active Thread" [_thread_blocked, id=13468, stack(0xabae6000,0xabb37000)]
+  0x08d41400 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=13466, stack(0xacbaf000,0xacc00000)]
+  0x08d3f800 JavaThread "CompilerThread0" daemon [_thread_blocked, id=13465, stack(0xacd2e000,0xacdaf000)]
+  0x08d3e000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=13464, stack(0xacdaf000,0xace00000)]
+  0x08d2e800 JavaThread "Finalizer" daemon [_thread_blocked, id=13463, stack(0xacf09000,0xacf5a000)]
+  0x08d2d400 JavaThread "Reference Handler" daemon [_thread_blocked, id=13462, stack(0xacf5a000,0xacfab000)]
+  0x08cdd400 JavaThread "main" [_thread_in_native, id=13460, stack(0xbfdbd000,0xbfe0d000)]
+
+Other Threads:
+  0x08d28400 VMThread [stack: 0xacfab000,0xad02c000] [id=13461]
+  0x08d43400 WatcherThread [stack: 0xacb2e000,0xacbaf000] [id=13467]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ def new generation   total 960K, used 856K [0xad270000, 0xad370000, 0xad750000)
+  eden space 896K,  88% used [0xad270000, 0xad336aa8, 0xad350000)
+  from space 64K,  96% used [0xad360000, 0xad36f630, 0xad370000)
+  to   space 64K,   0% used [0xad350000, 0xad350000, 0xad360000)
+ tenured generation   total 7180K, used 4390K [0xad750000, 0xade53000, 0xb1270000)
+   the space 7180K,  61% used [0xad750000, 0xadb99920, 0xadb99a00, 0xade53000)
+ compacting perm gen  total 24832K, used 24606K [0xb1270000, 0xb2ab0000, 0xb5270000)
+   the space 24832K,  99% used [0xb1270000, 0xb2a77b78, 0xb2a77c00, 0xb2ab0000)
+No shared spaces configured.
+
+Dynamic libraries:
+06000000-0642a000 r-xp 00000000 08:01 339345     /home/comp6733/uniflash_3.4/eclipse/jre/lib/i386/client/libjvm.so
+0642a000-06444000 rw-p 0042a000 08:01 339345     /home/comp6733/uniflash_3.4/eclipse/jre/lib/i386/client/libjvm.so
+06444000-06864000 rw-p 00000000 00:00 0 
+08048000-0804c000 r-xp 00000000 08:01 339256     /home/comp6733/uniflash_3.4/eclipse/uniflash
+0804c000-0804d000 rw-p 00003000 08:01 339256     /home/comp6733/uniflash_3.4/eclipse/uniflash
+08cd5000-093c4000 rw-p 00000000 00:00 0          [heap]
+840e1000-840e2000 ---p 00000000 00:00 0 
+840e2000-848e2000 rwxp 00000000 00:00 0 
+848e2000-848e3000 ---p 00000000 00:00 0 
+848e3000-850e3000 rwxp 00000000 00:00 0 
+850e3000-850e4000 ---p 00000000 00:00 0 
+850e4000-858e4000 rwxp 00000000 00:00 0 
+858e4000-858e5000 ---p 00000000 00:00 0 
+858e5000-860e5000 rwxp 00000000 00:00 0 
+860e5000-860e6000 ---p 00000000 00:00 0 
+860e6000-868e6000 rwxp 00000000 00:00 0 
+868e6000-868e7000 ---p 00000000 00:00 0 
+868e7000-870e7000 rwxp 00000000 00:00 0 
+870e7000-870e8000 ---p 00000000 00:00 0 
+870e8000-878e8000 rwxp 00000000 00:00 0 
+878e8000-878e9000 ---p 00000000 00:00 0 
+878e9000-880e9000 rwxp 00000000 00:00 0 
+880e9000-880ea000 ---p 00000000 00:00 0 
+880ea000-888ea000 rwxp 00000000 00:00 0 
+888ea000-888eb000 ---p 00000000 00:00 0 
+888eb000-890eb000 rwxp 00000000 00:00 0 
+890eb000-890ec000 ---p 00000000 00:00 0 
+890ec000-898ec000 rwxp 00000000 00:00 0 
+898ec000-898ed000 ---p 00000000 00:00 0 
+898ed000-8a0ed000 rwxp 00000000 00:00 0 
+8a0ed000-8a0ee000 ---p 00000000 00:00 0 
+8a0ee000-8a8ee000 rwxp 00000000 00:00 0 
+8a8ee000-8a8ef000 ---p 00000000 00:00 0 
+8a8ef000-8b0ef000 rwxp 00000000 00:00 0 
+8b0ef000-8b0f0000 ---p 00000000 00:00 0 
+8b0f0000-8b8f0000 rwxp 00000000 00:00 0 
+8b8f0000-8b8f1000 ---p 00000000 00:00 0 
+8b8f1000-8c0f1000 rwxp 00000000 00:00 0 
+8c0f1000-8c0f2000 ---p 00000000 00:00 0 
+8c0f2000-8c8f2000 rwxp 00000000 00:00 0 
+8c8f2000-8c8f3000 ---p 00000000 00:00 0 
+8c8f3000-8d0f3000 rwxp 00000000 00:00 0 
+8d0f3000-8d0f4000 ---p 00000000 00:00 0 
+8d0f4000-8d8f4000 rwxp 00000000 00:00 0 
+8d8f4000-8d8f5000 ---p 00000000 00:00 0 
+8d8f5000-8e0f5000 rwxp 00000000 00:00 0 
+8e0f5000-8e0f6000 ---p 00000000 00:00 0 
+8e0f6000-8e8f6000 rwxp 00000000 00:00 0 
+8e8f6000-8e8f7000 ---p 00000000 00:00 0 
+8e8f7000-8f0f7000 rwxp 00000000 00:00 0 
+8f0f7000-8f0f8000 ---p 00000000 00:00 0 
+8f0f8000-8f8f8000 rwxp 00000000 00:00 0 
+8f8f8000-8f8f9000 ---p 00000000 00:00 0 
+8f8f9000-900f9000 rwxp 00000000 00:00 0 
+900f9000-900fa000 ---p 00000000 00:00 0 
+900fa000-908fa000 rwxp 00000000 00:00 0 
+908fa000-908fb000 ---p 00000000 00:00 0 
+908fb000-910fb000 rwxp 00000000 00:00 0 
+910fb000-910fc000 ---p 00000000 00:00 0 
+910fc000-918fc000 rwxp 00000000 00:00 0 
+918fc000-918fd000 ---p 00000000 00:00 0 
+918fd000-920fd000 rwxp 00000000 00:00 0 
+920fd000-920fe000 ---p 00000000 00:00 0 
+920fe000-928fe000 rwxp 00000000 00:00 0 
+928fe000-928ff000 ---p 00000000 00:00 0 
+928ff000-930ff000 rwxp 00000000 00:00 0 
+930ff000-93100000 ---p 00000000 00:00 0 
+93100000-93900000 rwxp 00000000 00:00 0 
+93900000-93901000 ---p 00000000 00:00 0 
+93901000-94101000 rwxp 00000000 00:00 0 
+94101000-94102000 ---p 00000000 00:00 0 
+94102000-94902000 rwxp 00000000 00:00 0 
+94902000-94903000 ---p 00000000 00:00 0 
+94903000-95103000 rwxp 00000000 00:00 0 
+95103000-95104000 ---p 00000000 00:00 0 
+95104000-95904000 rwxp 00000000 00:00 0 
+95904000-95905000 ---p 00000000 00:00 0 
+95905000-96105000 rwxp 00000000 00:00 0 
+96105000-96106000 ---p 00000000 00:00 0 
+96106000-96906000 rwxp 00000000 00:00 0 
+96906000-96907000 ---p 00000000 00:00 0 
+96907000-97107000 rwxp 00000000 00:00 0 
+97107000-9710a000 ---p 00000000 00:00 0 
+9710a000-97908000 rwxp 00000000 00:00 0          [stack:13497]
+97908000-97b09000 rw-s 00000000 00:15 39481      /run/shm/JTI-765a6438
+97b09000-97b0c000 rwxp 00000000 00:00 0 
+97b0c000-9830a000 rwxp 00000000 00:00 0 
+9830a000-983f1000 r-xp 00000000 08:01 341568     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libAETOperationServer.so
+983f1000-983fe000 r--p 000e7000 08:01 341568     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libAETOperationServer.so
+983fe000-983ff000 rw-p 000f4000 08:01 341568     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libAETOperationServer.so
+983ff000-98400000 rw-p 00000000 00:00 0 
+98400000-984aa000 rw-p 00000000 00:00 0 
+984aa000-98500000 ---p 00000000 00:00 0 
+98531000-98532000 r--s 00002000 08:01 339146     /home/comp6733/uniflash_3.4/eclipse/plugins/com.ti.uniflash.script.runner_1.0.0.201509170704.jar
+98532000-9853a000 r-xp 00000000 08:01 340158     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libBkptCollector.so
+9853a000-9853b000 rw-p 00007000 08:01 340158     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libBkptCollector.so
+9853b000-9853f000 r-xp 00000000 08:01 339970     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libFlashCC26xx.so
+9853f000-98540000 r--p 00003000 08:01 339970     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libFlashCC26xx.so
+98540000-98541000 rw-p 00004000 08:01 339970     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libFlashCC26xx.so
+98541000-98599000 r-xp 00000000 08:01 341570     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libct470api.so
+98599000-9859b000 r--p 00057000 08:01 341570     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libct470api.so
+9859b000-9859d000 rw-p 00059000 08:01 341570     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libct470api.so
+9859d000-985bb000 r-xp 00000000 08:01 341530     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libSetupAdapter4.so
+985bb000-985bc000 r--p 0001d000 08:01 341530     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libSetupAdapter4.so
+985bc000-985bd000 rw-p 0001e000 08:01 341530     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libSetupAdapter4.so
+985bd000-985ee000 r-xp 00000000 08:01 341512     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libDeviceIdentifier.so
+985ee000-985ef000 r--p 00031000 08:01 341512     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libDeviceIdentifier.so
+985ef000-985f0000 rw-p 00032000 08:01 341512     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libDeviceIdentifier.so
+985f0000-985f1000 rw-p 00000000 00:00 0 
+98784000-98785000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9878b000-9878c000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+987f2000-987f5000 rwxp 00000000 00:00 0 
+987f5000-98ff3000 rwxp 00000000 00:00 0 
+98ff3000-990a9000 r-xp 00000000 08:01 341585     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libTraceOperationServer.so
+990a9000-990ae000 r--p 000b5000 08:01 341585     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libTraceOperationServer.so
+990ae000-990b0000 rw-p 000ba000 08:01 341585     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libTraceOperationServer.so
+990b0000-990f7000 r-xp 00000000 08:01 341569     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libAETPropertyHelper.so
+990f7000-990fa000 r--p 00047000 08:01 341569     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libAETPropertyHelper.so
+990fa000-990fb000 rw-p 0004a000 08:01 341569     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libAETPropertyHelper.so
+990fb000-990fc000 ---p 00000000 00:00 0 
+990fc000-998fc000 rwxp 00000000 00:00 0          [stack:13494]
+998fc000-998fd000 ---p 00000000 00:00 0 
+998fd000-9a0fd000 rwxp 00000000 00:00 0          [stack:13493]
+9a0fd000-9a0fe000 ---p 00000000 00:00 0 
+9a0fe000-9a8fe000 rwxp 00000000 00:00 0 
+9a8fe000-9a8ff000 ---p 00000000 00:00 0 
+9a8ff000-9b0ff000 rwxp 00000000 00:00 0 
+9b288000-9b2b2000 r-xp 00000000 08:01 341497     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdsicicle.so
+9b2b2000-9b2b3000 ---p 0002a000 08:01 341497     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdsicicle.so
+9b2b3000-9b2b8000 r--p 0002a000 08:01 341497     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdsicicle.so
+9b2b8000-9b2b9000 rw-p 0002f000 08:01 341497     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdsicicle.so
+9b2b9000-9b2e9000 r-xp 00000000 08:01 341498     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdsroute.so
+9b2e9000-9b2ed000 r--p 0002f000 08:01 341498     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdsroute.so
+9b2ed000-9b2ee000 rw-p 00033000 08:01 341498     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdsroute.so
+9b2ee000-9b2fd000 r-xp 00000000 08:01 341477     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdslocal.so
+9b2fd000-9b2fe000 ---p 0000f000 08:01 341477     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdslocal.so
+9b2fe000-9b2ff000 r--p 0000f000 08:01 341477     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdslocal.so
+9b2ff000-9b300000 rw-p 00010000 08:01 341477     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdslocal.so
+9b300000-9b500000 rw-s 00000000 00:04 2129941    /SYSV00000000 (deleted)
+9b500000-9b585000 rw-p 00000000 00:00 0 
+9b585000-9b600000 ---p 00000000 00:00 0 
+9b602000-9b614000 r-xp 00000000 08:01 341275     /home/comp6733/uniflash_3.4/ccs_base/common/bin/libti_targetdb_parser.so
+9b614000-9b615000 r--p 00011000 08:01 341275     /home/comp6733/uniflash_3.4/ccs_base/common/bin/libti_targetdb_parser.so
+9b615000-9b616000 rw-p 00012000 08:01 341275     /home/comp6733/uniflash_3.4/ccs_base/common/bin/libti_targetdb_parser.so
+9b616000-9b652000 r-xp 00000000 08:01 341580     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libICECD.so
+9b652000-9b653000 ---p 0003c000 08:01 341580     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libICECD.so
+9b653000-9b654000 r--p 0003c000 08:01 341580     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libICECD.so
+9b654000-9b655000 rw-p 0003d000 08:01 341580     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libICECD.so
+9b655000-9b67d000 r-xp 00000000 08:01 341539     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libTraceFactory.so
+9b67d000-9b67e000 r--p 00027000 08:01 341539     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libTraceFactory.so
+9b67e000-9b67f000 rw-p 00028000 08:01 341539     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libTraceFactory.so
+9b682000-9b683000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b683000-9b684000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b685000-9b686000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b68a000-9b68b000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b68c000-9b68d000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b68f000-9b690000 rw-s 00000000 00:15 39490      /run/shm/JTI-8116c21a
+9b690000-9b691000 rw-s 00000000 00:15 39489      /run/shm/JTI-d988b203
+9b691000-9b692000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b692000-9b693000 rw-s 00000000 00:15 39488      /run/shm/JTI-485eb565
+9b693000-9b694000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b694000-9b695000 rw-s 00000000 00:15 39487      /run/shm/JTI-cadc4510
+9b695000-9b696000 rw-s 00000000 00:15 39486      /run/shm/JTI-b57f331b
+9b696000-9b697000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b697000-9b698000 rw-s 00000000 00:15 39485      /run/shm/JTI-cc1ca296
+9b698000-9b699000 rw-s 00000000 00:15 39484      /run/shm/JTI-f19b1663
+9b699000-9b69a000 rw-s 00000000 00:15 39483      /run/shm/JTI-094005ef
+9b69a000-9b69b000 rw-s 00000000 00:15 39482      /run/shm/JTI-fbed219c
+9b69b000-9b69c000 rw-s 00000000 00:15 39480      /run/shm/JTI-45ef329e
+9b69c000-9b69d000 rw-s 00000000 00:15 39479      /run/shm/JTI-a86966c9
+9b69d000-9b6d5000 r-xp 00000000 08:01 341499     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdstrove.so
+9b6d5000-9b6d9000 r--p 00037000 08:01 341499     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdstrove.so
+9b6d9000-9b6da000 rw-p 0003b000 08:01 341499     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdstrove.so
+9b6da000-9b6db000 rw-s 00000000 00:15 39478      /run/shm/JTI-6c99e6e0
+9b6db000-9b6dc000 rw-s 00000000 00:15 39477      /run/shm/JTI-2ea6b079
+9b6dc000-9b6dd000 rw-s 00000000 00:15 40044      /run/shm/sem.U8g2vs (deleted)
+9b6dd000-9b6de000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b6de000-9b6df000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b6df000-9b6e0000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b6e0000-9b6e1000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b6e1000-9b6e2000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b6e2000-9b6e3000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b6e3000-9b6e4000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b6e4000-9b6e5000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9b6e5000-9b6f0000 r--s 0008d000 08:01 340228     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/packages/ti/dss/java/com.ti.ccstudio.debug.memoryserver_1.0.0.jar
+9b6f0000-9b6f3000 ---p 00000000 00:00 0 
+9b6f3000-9b741000 rwxp 00000000 00:00 0          [stack:13498]
+9b741000-9b742000 ---p 00000000 00:00 0 
+9b742000-9bf42000 rwxp 00000000 00:00 0 
+9bf42000-9bf43000 ---p 00000000 00:00 0 
+9bf43000-9c743000 rwxp 00000000 00:00 0 
+9c743000-9c76d000 r-xp 00000000 08:01 342125     /home/comp6733/uniflash_3.4/ccs_base/emulation/tpi/libtpiarm_x.so
+9c76d000-9c76e000 r--p 00029000 08:01 342125     /home/comp6733/uniflash_3.4/ccs_base/emulation/tpi/libtpiarm_x.so
+9c76e000-9c780000 rw-p 0002a000 08:01 342125     /home/comp6733/uniflash_3.4/ccs_base/emulation/tpi/libtpiarm_x.so
+9c780000-9c789000 r-xp 00000000 08:01 341833     /home/comp6733/uniflash_3.4/ccs_base/emulation/tpi/libtpi_cs_dap.so
+9c789000-9c78a000 r--p 00008000 08:01 341833     /home/comp6733/uniflash_3.4/ccs_base/emulation/tpi/libtpi_cs_dap.so
+9c78a000-9c78c000 rw-p 00009000 08:01 341833     /home/comp6733/uniflash_3.4/ccs_base/emulation/tpi/libtpi_cs_dap.so
+9c78c000-9c7bd000 r-xp 00000000 08:01 341495     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdsboard.so
+9c7bd000-9c7c1000 r--p 00030000 08:01 341495     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdsboard.so
+9c7c1000-9c7c2000 rw-p 00034000 08:01 341495     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdsboard.so
+9c7c2000-9c8c4000 rw-p 00000000 00:00 0 
+9c8c4000-9c8f3000 r-xp 00000000 08:01 342199     /home/comp6733/uniflash_3.4/ccs_base/emulation/drivers/libtixds510cortexm.so
+9c8f3000-9c8f4000 r--p 0002e000 08:01 342199     /home/comp6733/uniflash_3.4/ccs_base/emulation/drivers/libtixds510cortexm.so
+9c8f4000-9c8f5000 rw-p 0002f000 08:01 342199     /home/comp6733/uniflash_3.4/ccs_base/emulation/drivers/libtixds510cortexm.so
+9c8f5000-9c9f8000 rw-p 00000000 00:00 0 
+9c9f8000-9ca56000 r-xp 00000000 08:01 341489     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libjscxds110.so
+9ca56000-9ca5b000 r--p 0005d000 08:01 341489     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libjscxds110.so
+9ca5b000-9ca5c000 rw-p 00062000 08:01 341489     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libjscxds110.so
+9ca5c000-9ca5e000 rw-p 00000000 00:00 0 
+9ca5e000-9caae000 r-xp 00000000 08:01 340157     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libDebugProperties.so
+9caae000-9cab0000 rw-p 00050000 08:01 340157     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libDebugProperties.so
+9cab0000-9cbb2000 rw-p 00000000 00:00 0 
+9cbb2000-9cbed000 r--p 00000000 08:01 279138     /usr/share/fonts/truetype/dejavu/DejaVuSansMono-BoldOblique.ttf
+9cbed000-9cc2a000 r--p 00000000 08:01 279139     /usr/share/fonts/truetype/dejavu/DejaVuSansMono-Oblique.ttf
+9cc2a000-9cc78000 r--p 00000000 08:01 279137     /usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf
+9cc78000-9ccca000 r--p 00000000 08:01 279140     /usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf
+9ccca000-9cccb000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9cccb000-9cccc000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9cccc000-9cccd000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9cccd000-9ccce000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9ccce000-9cccf000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9cccf000-9ccd0000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9ccd0000-9ccd1000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9ccd1000-9ccd2000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9ccd2000-9ccd3000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9ccd3000-9ccd4000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9ccd4000-9ccde000 r-xp 00000000 08:01 341835     /home/comp6733/uniflash_3.4/ccs_base/emulation/tpi/libtpi_icepick.so
+9ccde000-9ccdf000 r--p 00009000 08:01 341835     /home/comp6733/uniflash_3.4/ccs_base/emulation/tpi/libtpi_icepick.so
+9ccdf000-9cce2000 rw-p 0000a000 08:01 341835     /home/comp6733/uniflash_3.4/ccs_base/emulation/tpi/libtpi_icepick.so
+9cce2000-9ccfd000 r-xp 00000000 08:01 342202     /home/comp6733/uniflash_3.4/ccs_base/emulation/drivers/libtixds510cs_dap.so
+9ccfd000-9ccfe000 r--p 0001a000 08:01 342202     /home/comp6733/uniflash_3.4/ccs_base/emulation/drivers/libtixds510cs_dap.so
+9ccfe000-9ccff000 rw-p 0001b000 08:01 342202     /home/comp6733/uniflash_3.4/ccs_base/emulation/drivers/libtixds510cs_dap.so
+9ccff000-9cd00000 rw-p 00000000 00:00 0 
+9cd00000-9ce00000 rw-p 00000000 00:00 0 
+9ce00000-9ce01000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9ce01000-9ce02000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9ce02000-9ce03000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9ce03000-9ce04000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9ce04000-9ce05000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9ce05000-9ce06000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9ce06000-9ce16000 r-xp 00000000 08:01 341472     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libjtagdata.so
+9ce16000-9ce17000 r--p 00010000 08:01 341472     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libjtagdata.so
+9ce17000-9ce18000 rw-p 00011000 08:01 341472     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libjtagdata.so
+9ce18000-9ce5c000 r-xp 00000000 08:01 341496     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdsfast3.so
+9ce5c000-9ce5d000 ---p 00044000 08:01 341496     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdsfast3.so
+9ce5d000-9ce63000 r--p 00044000 08:01 341496     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdsfast3.so
+9ce63000-9ce64000 rw-p 0004a000 08:01 341496     /home/comp6733/uniflash_3.4/ccs_base/common/uscif/libxdsfast3.so
+9ce64000-9cefb000 r-xp 00000000 08:01 341572     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libctools.so
+9cefb000-9cefc000 ---p 00097000 08:01 341572     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libctools.so
+9cefc000-9cefe000 r--p 00097000 08:01 341572     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libctools.so
+9cefe000-9ceff000 rw-p 00099000 08:01 341572     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libctools.so
+9ceff000-9cf00000 rw-p 00000000 00:00 0 
+9cf00000-9d000000 rw-p 00000000 00:00 0 
+9d000000-9d001000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9d001000-9d002000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9d002000-9d014000 r-xp 00000000 08:01 341813     /home/comp6733/uniflash_3.4/ccs_base/emulation/drivers/libprsc.so
+9d014000-9d015000 r--p 00012000 08:01 341813     /home/comp6733/uniflash_3.4/ccs_base/emulation/drivers/libprsc.so
+9d015000-9d016000 rw-p 00013000 08:01 341813     /home/comp6733/uniflash_3.4/ccs_base/emulation/drivers/libprsc.so
+9d016000-9d033000 r-xp 00000000 08:01 342207     /home/comp6733/uniflash_3.4/ccs_base/emulation/drivers/libtixds510icepick_c.so
+9d033000-9d034000 r--p 0001c000 08:01 342207     /home/comp6733/uniflash_3.4/ccs_base/emulation/drivers/libtixds510icepick_c.so
+9d034000-9d035000 rw-p 0001d000 08:01 342207     /home/comp6733/uniflash_3.4/ccs_base/emulation/drivers/libtixds510icepick_c.so
+9d035000-9d036000 rw-p 00000000 00:00 0 
+9d036000-9d051000 r-xp 00000000 08:01 341507     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libAETProperties.so
+9d051000-9d052000 r--p 0001a000 08:01 341507     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libAETProperties.so
+9d052000-9d053000 rw-p 0001b000 08:01 341507     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libAETProperties.so
+9d053000-9d09a000 r--p 00000000 08:01 279220     /usr/share/fonts/truetype/noto/NotoSans-BoldItalic.ttf
+9d09a000-9d0df000 r--p 00000000 08:01 279221     /usr/share/fonts/truetype/noto/NotoSans-Italic.ttf
+9d0df000-9d0e2000 ---p 00000000 00:00 0 
+9d0e2000-9d130000 rwxp 00000000 00:00 0          [stack:16226]
+9d130000-9d133000 ---p 00000000 00:00 0 
+9d133000-9d181000 rwxp 00000000 00:00 0          [stack:13482]
+9d181000-9d20d000 r-xp 00000000 08:01 340152     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libCollectorServer.so
+9d20d000-9d20f000 rw-p 0008c000 08:01 340152     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libCollectorServer.so
+9d20f000-9d211000 rw-p 00000000 00:00 0 
+9d211000-9d5d8000 r-xp 00000000 08:01 340529     /home/comp6733/uniflash_3.4/ccs_base/common/bin/libxerces-c.so.28.0
+9d5d8000-9d60b000 rw-p 003c6000 08:01 340529     /home/comp6733/uniflash_3.4/ccs_base/common/bin/libxerces-c.so.28.0
+9d60b000-9d8b2000 r-xp 00000000 08:01 340532     /home/comp6733/uniflash_3.4/ccs_base/common/bin/libsetup_parser.so
+9d8b2000-9d8b4000 rw-p 002a7000 08:01 340532     /home/comp6733/uniflash_3.4/ccs_base/common/bin/libsetup_parser.so
+9d8b4000-9d8b5000 rw-p 00000000 00:00 0 
+9d8b5000-9d96b000 r-xp 00000000 08:01 340140     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libtiofr11.so
+9d96b000-9d96f000 rw-p 000b6000 08:01 340140     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libtiofr11.so
+9d96f000-9e257000 r-xp 00000000 08:01 340151     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libDebugServer.so
+9e257000-9e25b000 rw-p 008e7000 08:01 340151     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libDebugServer.so
+9e25b000-9e2b6000 rw-p 00000000 00:00 0 
+9e2b6000-9e2da000 r-xp 00000000 08:01 263502     /lib/i386-linux-gnu/liblzma.so.5.0.0
+9e2da000-9e2db000 r--p 00023000 08:01 263502     /lib/i386-linux-gnu/liblzma.so.5.0.0
+9e2db000-9e2dc000 rw-p 00024000 08:01 263502     /lib/i386-linux-gnu/liblzma.so.5.0.0
+9e2dc000-9e42f000 r-xp 00000000 08:01 10145      /usr/lib/i386-linux-gnu/libxml2.so.2.9.1
+9e42f000-9e430000 ---p 00153000 08:01 10145      /usr/lib/i386-linux-gnu/libxml2.so.2.9.1
+9e430000-9e434000 r--p 00153000 08:01 10145      /usr/lib/i386-linux-gnu/libxml2.so.2.9.1
+9e434000-9e435000 rw-p 00157000 08:01 10145      /usr/lib/i386-linux-gnu/libxml2.so.2.9.1
+9e435000-9e436000 rw-p 00000000 00:00 0 
+9e436000-9e46f000 r-xp 00000000 08:01 9108       /usr/lib/i386-linux-gnu/libcroco-0.6.so.3.0.1
+9e46f000-9e471000 r--p 00039000 08:01 9108       /usr/lib/i386-linux-gnu/libcroco-0.6.so.3.0.1
+9e471000-9e472000 rw-p 0003b000 08:01 9108       /usr/lib/i386-linux-gnu/libcroco-0.6.so.3.0.1
+9e472000-9e4a8000 r-xp 00000000 08:01 9897       /usr/lib/i386-linux-gnu/librsvg-2.so.2.40.2
+9e4a8000-9e4a9000 r--p 00035000 08:01 9897       /usr/lib/i386-linux-gnu/librsvg-2.so.2.40.2
+9e4a9000-9e4aa000 rw-p 00036000 08:01 9897       /usr/lib/i386-linux-gnu/librsvg-2.so.2.40.2
+9e4aa000-9e4ab000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e4ab000-9e4ac000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e4ac000-9e4ad000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e4ad000-9e4ae000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e4ae000-9e4af000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e4af000-9e4c3000 r--s 000df000 08:01 339238     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.jface.text_3.8.0.v20120531-0600.jar
+9e4c3000-9e523000 rw-s 00000000 00:04 2097172    /SYSV00000000 (deleted)
+9e523000-9e524000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e524000-9e525000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e525000-9e526000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e526000-9e53f000 r-xp 00000000 08:01 341524     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libICETargetAdapter.so
+9e53f000-9e540000 r--p 00018000 08:01 341524     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libICETargetAdapter.so
+9e540000-9e541000 rw-p 00019000 08:01 341524     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libICETargetAdapter.so
+9e541000-9e542000 r-xp 00000000 08:01 341548     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libctoolsndbg.so
+9e542000-9e543000 r--p 00000000 08:01 341548     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libctoolsndbg.so
+9e543000-9e544000 rw-p 00001000 08:01 341548     /home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/libctoolsndbg.so
+9e544000-9e545000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e545000-9e546000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e546000-9e547000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e547000-9e548000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e548000-9e549000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e549000-9e54a000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e54a000-9e54b000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e54b000-9e54c000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e54c000-9e54d000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e54d000-9e550000 ---p 00000000 00:00 0 
+9e550000-9e59e000 rwxp 00000000 00:00 0          [stack:16227]
+9e59e000-9e59f000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e59f000-9e5a0000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e5a0000-9e5a1000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e5a1000-9e5a2000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e5a2000-9e5a3000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+9e5a3000-9e5f0000 r--p 00000000 08:01 279219     /usr/share/fonts/truetype/noto/NotoSans-Bold.ttf
+9e5f0000-a2e86000 r--p 00000000 08:01 314388     /usr/share/icons/mate/icon-theme.cache
+a2e86000-a4747000 r--p 00000000 08:01 263691     /usr/share/icons/hicolor/icon-theme.cache
+a4747000-a994e000 r--p 00000000 08:01 302904     /usr/share/icons/gnome/icon-theme.cache
+a994e000-aa800000 r--p 00000000 08:01 284051     /usr/share/icons/Mint-X/icon-theme.cache
+aa800000-aa8fd000 rw-p 00000000 00:00 0 
+aa8fd000-aa900000 ---p 00000000 00:00 0 
+aa900000-aa901000 r--s 00005000 08:01 339147     /home/comp6733/uniflash_3.4/eclipse/plugins/com.ti.uniflash.session_1.0.0.201509170704.jar
+aa901000-aa90a000 r-xp 00000000 08:01 341810     /home/comp6733/uniflash_3.4/ccs_base/emulation/drivers/libcmapi.so
+aa90a000-aa90b000 r--p 00008000 08:01 341810     /home/comp6733/uniflash_3.4/ccs_base/emulation/drivers/libcmapi.so
+aa90b000-aa90c000 rw-p 00009000 08:01 341810     /home/comp6733/uniflash_3.4/ccs_base/emulation/drivers/libcmapi.so
+aa90c000-aa917000 r--s 00084000 08:01 339250     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.ui.workbench.texteditor_3.8.0.v20120523-1310.jar
+aa917000-aa930000 r-xp 00000000 08:01 11333      /usr/lib/i386-linux-gnu/gio/modules/libgioremote-volume-monitor.so
+aa930000-aa931000 ---p 00019000 08:01 11333      /usr/lib/i386-linux-gnu/gio/modules/libgioremote-volume-monitor.so
+aa931000-aa932000 r--p 00019000 08:01 11333      /usr/lib/i386-linux-gnu/gio/modules/libgioremote-volume-monitor.so
+aa932000-aa933000 rw-p 0001a000 08:01 11333      /usr/lib/i386-linux-gnu/gio/modules/libgioremote-volume-monitor.so
+aa933000-aa93e000 r-xp 00000000 08:01 11329      /usr/lib/i386-linux-gnu/gio/modules/libdconfsettings.so
+aa93e000-aa93f000 r--p 0000a000 08:01 11329      /usr/lib/i386-linux-gnu/gio/modules/libdconfsettings.so
+aa93f000-aa940000 rw-p 0000b000 08:01 11329      /usr/lib/i386-linux-gnu/gio/modules/libdconfsettings.so
+aa940000-aa943000 r--s 00013000 08:01 339159     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.core.expressions_3.4.400.v20120523-2004.jar
+aa943000-aa944000 r--s 00005000 08:01 340229     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/packages/ti/dss/java/com.ti.ccstudio.scripting.environment_3.1.0.jar
+aa944000-aa945000 r-xp 00000000 08:01 11200      /usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.so
+aa945000-aa946000 r--p 00001000 08:01 11200      /usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.so
+aa946000-aa947000 rw-p 00002000 08:01 11200      /usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.so
+aa947000-aa948000 rw-s 00000000 00:15 24596      /run/shm/JTI-5cc4cdf4
+aa948000-aa951000 r--s 00057000 08:01 339136     /home/comp6733/uniflash_3.4/eclipse/plugins/com.ti.uniflash.cc3xx_1.0.0.201509170704.jar
+aa951000-aa953000 r--s 0000c000 08:01 339111     /home/comp6733/uniflash_3.4/eclipse/plugins/com.ti.ccstudio.core_5.3.0.201210101700.jar
+aa953000-aa957000 r--s 00024000 08:01 339247     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.ui.console_3.5.100.v20120521-2012.jar
+aa957000-aa95d000 r-xp 00000000 08:01 11190      /usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-gif.so
+aa95d000-aa95e000 r--p 00005000 08:01 11190      /usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-gif.so
+aa95e000-aa95f000 rw-p 00006000 08:01 11190      /usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-gif.so
+aa95f000-aa969000 r--s 00069000 08:01 339148     /home/comp6733/uniflash_3.4/eclipse/plugins/com.ti.uniflash_1.0.0.201509170704.jar
+aa969000-aa96e000 r--s 0003b000 08:01 339236     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.help_3.6.0.v20120521-2344.jar
+aa96e000-aa971000 ---p 00000000 00:00 0 
+aa971000-aa9bf000 rwxp 00000000 00:00 0          [stack:13480]
+aa9bf000-aa9c3000 r--s 0002b000 08:01 339246     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.ui.browser_3.4.0.v20120521-2332.jar
+aa9c3000-aa9cc000 r-xp 00000000 08:01 440535     /home/comp6733/uniflash_3.4/eclipse/configuration/org.eclipse.osgi/bundles/102/2/.cp/libswt-atk-gtk-3833.so
+aa9cc000-aa9cd000 rw-p 00009000 08:01 440535     /home/comp6733/uniflash_3.4/eclipse/configuration/org.eclipse.osgi/bundles/102/2/.cp/libswt-atk-gtk-3833.so
+aa9cd000-aa9d6000 r-xp 00000000 08:01 340530     /home/comp6733/uniflash_3.4/ccs_base/common/bin/libCCReg.so
+aa9d6000-aa9d7000 rw-p 00009000 08:01 340530     /home/comp6733/uniflash_3.4/ccs_base/common/bin/libCCReg.so
+aa9d7000-aa9dc000 r--s 00038000 08:01 339245     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.text_3.5.200.v20120523-1310.jar
+aa9dc000-aa9df000 ---p 00000000 00:00 0 
+aa9df000-aaa2d000 rwxp 00000000 00:00 0          [stack:13505]
+aaa2d000-aaa47000 r-xp 00000000 08:01 340160     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libXPCOMTILogger.so
+aaa47000-aaa48000 rw-p 00019000 08:01 340160     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libXPCOMTILogger.so
+aaa48000-aaa7d000 r-xp 00000000 08:01 340153     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libDatasetServer.so
+aaa7d000-aaa7e000 rw-p 00035000 08:01 340153     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libDatasetServer.so
+aaa7e000-aaa7f000 rw-p 00000000 00:00 0 
+aaa7f000-aaa81000 r--s 00003000 08:01 339227     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.p2.updatechecker_1.1.200.v20110808-1657.jar
+aaa81000-aaa84000 r--s 0001a000 08:01 339210     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.p2.metadata.repository_1.2.100.v20120524-1717.jar
+aaa84000-aaa88000 r--s 0001d000 08:01 339218     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.p2.repository_2.2.0.v20120524-1945.jar
+aaa88000-aaa90000 r--s 0004c000 08:01 339211     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.p2.metadata_2.1.0.v20120430-2001.jar
+aaa90000-aaa93000 r--s 00018000 08:01 339232     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.security_1.1.100.v20120522-1841.jar
+aaa93000-aaa97000 r--s 0002d000 08:01 339206     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.p2.engine_2.2.0.v20120501-1502.jar
+aaa97000-aaa99000 r--s 0000d000 08:01 339212     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.p2.operations_2.2.0.v20120524-0542.jar
+aaa99000-aaa9b000 r--s 0000d000 08:01 339224     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.p2.ui.sdk.scheduler_1.1.0.v20110815-1744.jar
+aaa9b000-aaaa3000 r--s 00041000 08:01 339156     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.core.databinding.observable_1.4.1.v20120521-2332.jar
+aaaa3000-aaaab000 r--s 0003c000 08:01 339237     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.jface.databinding_1.6.0.v20120521-2332.jar
+aaaab000-aaab5000 r-xp 00000000 08:01 440533     /home/comp6733/uniflash_3.4/eclipse/configuration/org.eclipse.osgi/bundles/102/2/.cp/libswt-cairo-gtk-3833.so
+aaab5000-aaab6000 rw-p 0000a000 08:01 440533     /home/comp6733/uniflash_3.4/eclipse/configuration/org.eclipse.osgi/bundles/102/2/.cp/libswt-cairo-gtk-3833.so
+aaab6000-aaaba000 r-xp 00000000 08:01 11196      /usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-png.so
+aaaba000-aaabb000 r--p 00003000 08:01 11196      /usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-png.so
+aaabb000-aaabc000 rw-p 00004000 08:01 11196      /usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-png.so
+aaabc000-aaabd000 r--s 00003000 08:01 339110     /home/comp6733/uniflash_3.4/eclipse/plugins/com.ti.base.ui_5.3.0.201210101700.jar
+aaabd000-aab08000 r--p 00000000 08:01 279222     /usr/share/fonts/truetype/noto/NotoSans-Regular.ttf
+aab08000-aab09000 r--s 00000000 08:01 184411     /var/cache/fontconfig/087e1975ba9a574b140bb1df193bf770-le32d4.cache-4
+aab09000-aab0a000 r--s 00000000 08:01 171123     /var/cache/fontconfig/c05880de57d1f5e948fdfacc138775d9-le32d4.cache-4
+aab0a000-aab12000 r--s 00000000 08:01 171116     /var/cache/fontconfig/945677eb7aeaf62f1d50efc3fb3ec7d8-le32d4.cache-4
+aab12000-aab14000 r--s 00000000 08:01 171118     /var/cache/fontconfig/99e8ed0e538f840c565b6ed5dad60d56-le32d4.cache-4
+aab14000-aab18000 r--s 00000000 08:01 171101     /var/cache/fontconfig/2cd17615ca594fa2959ae173292e504c-le32d4.cache-4
+aab18000-aab19000 r--s 00000000 08:01 171133     /var/cache/fontconfig/e7071f4a29fa870f4323321c154eba04-le32d4.cache-4
+aab19000-aab1a000 r--s 00000000 08:01 171098     /var/cache/fontconfig/0d8c3b2ac0904cb8a57a757ad11a4a08-le32d4.cache-4
+aab1a000-aab1f000 r--s 00000000 08:01 171120     /var/cache/fontconfig/a755afe4a08bf5b97852ceb7400b47bc-le32d4.cache-4
+aab1f000-aab28000 r--s 00000000 08:01 171111     /var/cache/fontconfig/6d41288fd70b0be22e8c3a91e032eec0-le32d4.cache-4
+aab28000-aab37000 r--s 00000000 08:01 171095     /var/cache/fontconfig/04aabc0a78ac019cf9454389977116d2-le32d4.cache-4
+aab37000-aab38000 r--s 00000000 08:01 171100     /var/cache/fontconfig/1ac9eb803944fde146138c791f5cc56a-le32d4.cache-4
+aab38000-aab3b000 r--s 00000000 08:01 171104     /var/cache/fontconfig/385c0604a188198f04d133e54aba7fe7-le32d4.cache-4
+aab3b000-aab3c000 r--s 00000000 08:01 171130     /var/cache/fontconfig/dc05db6664285cc2f12bf69c139ae4c3-le32d4.cache-4
+aab3c000-aab3e000 r--s 00000000 08:01 171113     /var/cache/fontconfig/767a8244fc0220cfb567a839d0392e0b-le32d4.cache-4
+aab3e000-aab3f000 r--s 00000000 08:01 171106     /var/cache/fontconfig/4794a0821666d79190d59a36cb4f44b5-le32d4.cache-4
+aab3f000-aab4c000 r--s 00000000 08:01 171096     /var/cache/fontconfig/0bd3dc0958fa2205aaaa8ebb13e2872b-le32d4.cache-4
+aab4c000-aab50000 r--s 00000000 08:01 171115     /var/cache/fontconfig/8801497958630a81b71ace7c5f9b32a8-le32d4.cache-4
+aab50000-aab53000 r--s 00000000 08:01 184410     /var/cache/fontconfig/c57959a16110560c8d0fcea73374aeeb-le32d4.cache-4
+aab53000-aab58000 r--s 00000000 08:01 171102     /var/cache/fontconfig/3047814df9a2f067bd2d96a2b9c36e5a-le32d4.cache-4
+aab58000-aab59000 r--s 00000000 08:01 171108     /var/cache/fontconfig/56cf4f4769d0f4abc89a4895d7bd3ae1-le32d4.cache-4
+aab59000-aab5a000 r--s 00000000 08:01 171122     /var/cache/fontconfig/b9d506c9ac06c20b433354fa67a72993-le32d4.cache-4
+aab5a000-aab5e000 r--s 00000000 08:01 171121     /var/cache/fontconfig/b47c4e1ecd0709278f4910c18777a504-le32d4.cache-4
+aab5e000-aab6e000 r--s 00000000 08:01 171127     /var/cache/fontconfig/d52a8644073d54c13679302ca1180695-le32d4.cache-4
+aab6e000-aab6f000 r--s 00000000 08:01 184409     /var/cache/fontconfig/8a687c406b77f27d99abfeeba937fcce-le32d4.cache-4
+aab6f000-aab76000 r--s 00000000 08:01 171105     /var/cache/fontconfig/3f7329c5293ffd510edef78f73874cfd-le32d4.cache-4
+aab76000-aab7f000 r--s 00000000 08:01 171128     /var/cache/fontconfig/d589a48862398ed80a3d6066f4f56f4c-le32d4.cache-4
+aab7f000-aab80000 r--s 00000000 08:01 171097     /var/cache/fontconfig/0c9eb80ebd1c36541ebe2852d3bb0c49-le32d4.cache-4
+aab80000-aab87000 r--s 00000000 08:01 184407     /var/cache/fontconfig/d0972c3d32f097851eb916381fc38920-le32d4.cache-4
+aab87000-aab88000 r--s 00000000 08:01 184406     /var/cache/fontconfig/c277e94e32b20404286a1ddafa5a80f0-le32d4.cache-4
+aab88000-aab8a000 r--s 00000000 08:01 184405     /var/cache/fontconfig/e13b20fdb08344e0e664864cc2ede53d-le32d4.cache-4
+aab8a000-aab8d000 r--s 00000000 08:01 184404     /var/cache/fontconfig/7ef2298fde41cc6eeb7af42e48b7d293-le32d4.cache-4
+aab8d000-aab91000 rwxp 00000000 00:00 0 
+aab91000-aabec000 r-xp 00000000 08:01 440531     /home/comp6733/uniflash_3.4/eclipse/configuration/org.eclipse.osgi/bundles/102/2/.cp/libswt-pi-gtk-3833.so
+aabec000-aabee000 rw-p 0005a000 08:01 440531     /home/comp6733/uniflash_3.4/eclipse/configuration/org.eclipse.osgi/bundles/102/2/.cp/libswt-pi-gtk-3833.so
+aabee000-aabef000 rw-p 00000000 00:00 0 
+aabef000-aabf0000 ---p 00000000 00:00 0 
+aabf0000-ab3f0000 rwxp 00000000 00:00 0          [stack:13476]
+ab3f0000-ab448000 r-xp 00000000 08:01 340154     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libXPCOMUtility.so
+ab448000-ab44a000 rw-p 00057000 08:01 340154     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libXPCOMUtility.so
+ab44a000-ab44d000 ---p 00000000 00:00 0 
+ab44d000-ab49b000 rwxp 00000000 00:00 0          [stack:13475]
+ab49b000-ab4b7000 r-xp 00000000 08:01 263481     /lib/i386-linux-gnu/libgcc_s.so.1
+ab4b7000-ab4b8000 rw-p 0001b000 08:01 263481     /lib/i386-linux-gnu/libgcc_s.so.1
+ab4b8000-ab594000 r-xp 00000000 08:01 9974       /usr/lib/i386-linux-gnu/libstdc++.so.6.0.19
+ab594000-ab595000 ---p 000dc000 08:01 9974       /usr/lib/i386-linux-gnu/libstdc++.so.6.0.19
+ab595000-ab599000 r--p 000dc000 08:01 9974       /usr/lib/i386-linux-gnu/libstdc++.so.6.0.19
+ab599000-ab59a000 rw-p 000e0000 08:01 9974       /usr/lib/i386-linux-gnu/libstdc++.so.6.0.19
+ab59a000-ab5a1000 rw-p 00000000 00:00 0 
+ab5a1000-ab61b000 r-xp 00000000 08:01 340533     /home/comp6733/uniflash_3.4/ccs_base/common/bin/libfsutil.so
+ab61b000-ab61c000 rw-p 0007a000 08:01 340533     /home/comp6733/uniflash_3.4/ccs_base/common/bin/libfsutil.so
+ab61c000-ab65d000 r-xp 00000000 08:01 340531     /home/comp6733/uniflash_3.4/ccs_base/common/bin/libti_logger.so
+ab65d000-ab660000 rw-p 00040000 08:01 340531     /home/comp6733/uniflash_3.4/ccs_base/common/bin/libti_logger.so
+ab660000-ab6d9000 r-xp 00000000 08:01 340161     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libti_xpcom.so
+ab6d9000-ab6dc000 rw-p 00079000 08:01 340161     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libti_xpcom.so
+ab6dc000-ab700000 r--s 00126000 08:01 340230     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/packages/ti/dss/java/com.ti.debug.engine_1.0.0.jar
+ab700000-ab7fd000 rw-p 00000000 00:00 0 
+ab7fd000-ab800000 ---p 00000000 00:00 0 
+ab800000-ab801000 r--p 00000000 08:01 418544     /usr/share/locale-langpack/en_AU/LC_MESSAGES/glib20.mo
+ab801000-ab806000 r-xp 00000000 08:01 8937       /usr/lib/i386-linux-gnu/libXtst.so.6.1.0
+ab806000-ab807000 r--p 00004000 08:01 8937       /usr/lib/i386-linux-gnu/libXtst.so.6.1.0
+ab807000-ab808000 rw-p 00005000 08:01 8937       /usr/lib/i386-linux-gnu/libXtst.so.6.1.0
+ab808000-ab809000 r-xp 00000000 08:01 9501       /usr/lib/i386-linux-gnu/libgthread-2.0.so.0.4002.0
+ab809000-ab80a000 r--p 00000000 08:01 9501       /usr/lib/i386-linux-gnu/libgthread-2.0.so.0.4002.0
+ab80a000-ab80b000 rw-p 00001000 08:01 9501       /usr/lib/i386-linux-gnu/libgthread-2.0.so.0.4002.0
+ab80b000-ab80e000 r-xp 00000000 08:01 440525     /home/comp6733/uniflash_3.4/eclipse/configuration/org.eclipse.osgi/bundles/102/2/.cp/libswt-gtk-3833.so
+ab80e000-ab80f000 rw-p 00002000 08:01 440525     /home/comp6733/uniflash_3.4/eclipse/configuration/org.eclipse.osgi/bundles/102/2/.cp/libswt-gtk-3833.so
+ab80f000-ab810000 rw-p 00000000 00:00 0 
+ab810000-ab81d000 r-xp 00000000 08:01 340150     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libDirectoryService.so
+ab81d000-ab81e000 rw-p 0000c000 08:01 340150     /home/comp6733/uniflash_3.4/ccs_base/DebugServer/bin/libDirectoryService.so
+ab81e000-ab821000 r--s 00004000 08:01 339112     /home/comp6733/uniflash_3.4/eclipse/plugins/com.ti.ccstudio.debug.server.core_5.3.0.201210101700.jar
+ab821000-ab822000 r--s 00000000 08:01 339117     /home/comp6733/uniflash_3.4/eclipse/plugins/com.ti.common.core.utils.ds_1.0.0.201403071400.jar
+ab822000-ab824000 r--s 0000c000 08:01 339119     /home/comp6733/uniflash_3.4/eclipse/plugins/com.ti.common.core_6.0.0.201403092200.jar
+ab824000-ab826000 r--s 00005000 08:01 339144     /home/comp6733/uniflash_3.4/eclipse/plugins/com.ti.uniflash.common_1.0.0.201509170704.jar
+ab826000-ab829000 r--s 00018000 08:01 339154     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.core.commands_3.6.1.v20120521-2332.jar
+ab829000-ab82d000 r--s 00022000 08:01 339252     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.ui_3.8.0.v20120523-1546.jar
+ab82d000-ab869000 r--s 00629000 08:01 339109     /home/comp6733/uniflash_3.4/eclipse/plugins/com.ibm.icu_4.4.2.v20110823.jar
+ab869000-ab87e000 r--s 00230000 08:01 339243     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.swt.gtk.linux.x86_3.8.0.v3833.jar
+ab87e000-ab87f000 r--s 00000000 08:01 339115     /home/comp6733/uniflash_3.4/eclipse/plugins/com.ti.ccstudio.swt_5.3.0.201210101700.jar
+ab87f000-ab880000 r--s 00004000 08:01 339244     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.swt_3.8.0.v3833.jar
+ab880000-ab895000 r--s 000f6000 08:01 339239     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.jface_3.8.0.v20120521-2332.jar
+ab895000-ab8dc000 r--s 003b4000 08:01 339251     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.ui.workbench_3.8.0.v20120521-2332.jar
+ab8dc000-ab8de000 r--s 00001000 08:01 339901     /home/comp6733/uniflash_3.4/eclipse/plugins/com.ti.ccstudio.startupInstaller_6.0.0.201503091537.jar
+ab8de000-ab8e0000 r--s 00010000 08:01 339200     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.p2.core_2.2.0.v20120430-0525.jar
+ab8e0000-ab8e1000 r--s 00007000 08:01 339203     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.p2.directorywatcher_1.0.300.v20110808-1657.jar
+ab8e1000-ab8e4000 r--s 00013000 08:01 339184     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.app_1.3.100.v20120522-1841.jar
+ab8e4000-ab8e7000 ---p 00000000 00:00 0 
+ab8e7000-ab935000 rwxp 00000000 00:00 0          [stack:13474]
+ab935000-ab937000 r--s 00015000 08:01 339162     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.core.jobs_3.5.200.v20120521-2346.jar
+ab937000-ab93a000 r--s 0001c000 08:01 339229     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.preferences_3.5.0.v20120522-1841.jar
+ab93a000-ab93c000 r--s 00015000 08:01 339155     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.core.contenttype_3.4.200.v20120523-2004.jar
+ab93c000-ab93e000 r--s 00002000 08:01 339173     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.core.runtime.compatibility.registry_3.5.100.v20120521-2346/runtime_registry_compatibility.jar
+ab93e000-ab941000 r--s 0002a000 08:01 339230     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.registry_3.5.200.v20120522-1841.jar
+ab941000-ab943000 r--s 00011000 08:01 339174     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.core.runtime_3.8.0.v20120521-2346.jar
+ab943000-ab946000 ---p 00000000 00:00 0 
+ab946000-ab994000 rwxp 00000000 00:00 0          [stack:13473]
+ab994000-ab997000 ---p 00000000 00:00 0 
+ab997000-ab9e5000 rwxp 00000000 00:00 0          [stack:13479]
+ab9e5000-ab9e8000 r--s 00012000 08:01 339241     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.osgi.services_3.3.100.v20120522-1822.jar
+ab9e8000-ab9eb000 r--s 00011000 08:01 339235     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.util_1.0.400.v20120522-2049.jar
+ab9eb000-ab9ee000 r--s 0002d000 08:01 339187     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.ds_1.4.0.v20120522-1841.jar
+ab9ee000-ab9f1000 r--s 00018000 08:01 339185     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.common_3.6.100.v20120522-1841.jar
+ab9f1000-ab9f4000 ---p 00000000 00:00 0 
+ab9f4000-aba42000 rwxp 00000000 00:00 0          [stack:13471]
+aba42000-aba44000 r--s 00008000 08:01 339234     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.simpleconfigurator_1.0.300.v20110815-1744.jar
+aba44000-aba47000 ---p 00000000 00:00 0 
+aba47000-aba95000 rwxp 00000000 00:00 0          [stack:13470]
+aba95000-aba98000 ---p 00000000 00:00 0 
+aba98000-abae6000 rwxp 00000000 00:00 0          [stack:13469]
+abae6000-abae9000 ---p 00000000 00:00 0 
+abae9000-abb37000 rwxp 00000000 00:00 0          [stack:13468]
+abb37000-abb3e000 r-xp 00000000 08:01 339379     /home/comp6733/uniflash_3.4/eclipse/jre/lib/i386/libnio.so
+abb3e000-abb3f000 rw-p 00006000 08:01 339379     /home/comp6733/uniflash_3.4/eclipse/jre/lib/i386/libnio.so
+abb3f000-abb52000 r-xp 00000000 08:01 339378     /home/comp6733/uniflash_3.4/eclipse/jre/lib/i386/libnet.so
+abb52000-abb53000 rw-p 00013000 08:01 339378     /home/comp6733/uniflash_3.4/eclipse/jre/lib/i386/libnet.so
+abb53000-abb67000 r--s 00141000 08:01 339242     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.osgi_3.8.0.v20120529-1548.jar
+abb67000-abbc7000 rw-s 00000000 00:04 1867794    /SYSV00000000 (deleted)
+abbc7000-abc61000 rw-p 00000000 00:00 0 
+abc61000-abc64000 r-xp 00000000 08:01 11189      /usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-bmp.so
+abc64000-abc65000 r--p 00002000 08:01 11189      /usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-bmp.so
+abc65000-abc66000 rw-p 00003000 08:01 11189      /usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-bmp.so
+abc66000-abc84000 r--s 00000000 08:01 326126     /usr/share/mime/mime.cache
+abc84000-abcb9000 r-xp 00000000 08:01 11665      /usr/lib/i386-linux-gnu/gtk-2.0/2.10.0/engines/libmurrine.so
+abcb9000-abcba000 r--p 00034000 08:01 11665      /usr/lib/i386-linux-gnu/gtk-2.0/2.10.0/engines/libmurrine.so
+abcba000-abcbb000 rw-p 00035000 08:01 11665      /usr/lib/i386-linux-gnu/gtk-2.0/2.10.0/engines/libmurrine.so
+abcbb000-abcd9000 r-xp 00000000 08:01 8996       /usr/lib/i386-linux-gnu/libatk-1.0.so.0.21009.1
+abcd9000-abcdb000 r--p 0001d000 08:01 8996       /usr/lib/i386-linux-gnu/libatk-1.0.so.0.21009.1
+abcdb000-abcdc000 rw-p 0001f000 08:01 8996       /usr/lib/i386-linux-gnu/libatk-1.0.so.0.21009.1
+abcdc000-ac143000 r-xp 00000000 08:01 9505       /usr/lib/i386-linux-gnu/libgtk-x11-2.0.so.0.2400.23
+ac143000-ac147000 r--p 00466000 08:01 9505       /usr/lib/i386-linux-gnu/libgtk-x11-2.0.so.0.2400.23
+ac147000-ac149000 rw-p 0046a000 08:01 9505       /usr/lib/i386-linux-gnu/libgtk-x11-2.0.so.0.2400.23
+ac149000-ac14b000 rw-p 00000000 00:00 0 
+ac14b000-ac165000 r-xp 00000000 08:01 9395       /usr/lib/i386-linux-gnu/libgraphite2.so.3.0.1
+ac165000-ac166000 r--p 00019000 08:01 9395       /usr/lib/i386-linux-gnu/libgraphite2.so.3.0.1
+ac166000-ac167000 rw-p 0001a000 08:01 9395       /usr/lib/i386-linux-gnu/libgraphite2.so.3.0.1
+ac167000-ac16c000 r-xp 00000000 08:01 8907       /usr/lib/i386-linux-gnu/libXdmcp.so.6.0.0
+ac16c000-ac16d000 r--p 00004000 08:01 8907       /usr/lib/i386-linux-gnu/libXdmcp.so.6.0.0
+ac16d000-ac16e000 rw-p 00005000 08:01 8907       /usr/lib/i386-linux-gnu/libXdmcp.so.6.0.0
+ac16e000-ac170000 r-xp 00000000 08:01 8894       /usr/lib/i386-linux-gnu/libXau.so.6.0.0
+ac170000-ac171000 r--p 00001000 08:01 8894       /usr/lib/i386-linux-gnu/libXau.so.6.0.0
+ac171000-ac172000 rw-p 00002000 08:01 8894       /usr/lib/i386-linux-gnu/libXau.so.6.0.0
+ac172000-ac179000 r-xp 00000000 08:01 9128       /usr/lib/i386-linux-gnu/libdatrie.so.1.3.1
+ac179000-ac17a000 r--p 00006000 08:01 9128       /usr/lib/i386-linux-gnu/libdatrie.so.1.3.1
+ac17a000-ac17b000 rw-p 00007000 08:01 9128       /usr/lib/i386-linux-gnu/libdatrie.so.1.3.1
+ac17b000-ac1cf000 r-xp 00000000 08:01 9526       /usr/lib/i386-linux-gnu/libharfbuzz.so.0.927.0
+ac1cf000-ac1d0000 r--p 00054000 08:01 9526       /usr/lib/i386-linux-gnu/libharfbuzz.so.0.927.0
+ac1d0000-ac1d1000 rw-p 00055000 08:01 9526       /usr/lib/i386-linux-gnu/libharfbuzz.so.0.927.0
+ac1d1000-ac1f1000 r-xp 00000000 08:01 10137      /usr/lib/i386-linux-gnu/libxcb.so.1.1.0
+ac1f1000-ac1f2000 r--p 0001f000 08:01 10137      /usr/lib/i386-linux-gnu/libxcb.so.1.1.0
+ac1f2000-ac1f3000 rw-p 00020000 08:01 10137      /usr/lib/i386-linux-gnu/libxcb.so.1.1.0
+ac1f3000-ac1fb000 r-xp 00000000 08:01 10119      /usr/lib/i386-linux-gnu/libxcb-render.so.0.0.0
+ac1fb000-ac1fc000 r--p 00008000 08:01 10119      /usr/lib/i386-linux-gnu/libxcb-render.so.0.0.0
+ac1fc000-ac1fd000 rw-p 00009000 08:01 10119      /usr/lib/i386-linux-gnu/libxcb-render.so.0.0.0
+ac1fd000-ac1ff000 r-xp 00000000 08:01 10123      /usr/lib/i386-linux-gnu/libxcb-shm.so.0.0.0
+ac1ff000-ac200000 r--p 00001000 08:01 10123      /usr/lib/i386-linux-gnu/libxcb-shm.so.0.0.0
+ac200000-ac201000 rw-p 00002000 08:01 10123      /usr/lib/i386-linux-gnu/libxcb-shm.so.0.0.0
+ac201000-ac227000 r-xp 00000000 08:01 263557     /lib/i386-linux-gnu/libpng12.so.0.50.0
+ac227000-ac228000 r--p 00025000 08:01 263557     /lib/i386-linux-gnu/libpng12.so.0.50.0
+ac228000-ac229000 rw-p 00026000 08:01 263557     /lib/i386-linux-gnu/libpng12.so.0.50.0
+ac229000-ac2cd000 r-xp 00000000 08:01 9824       /usr/lib/i386-linux-gnu/libpixman-1.so.0.30.2
+ac2cd000-ac2d2000 r--p 000a4000 08:01 9824       /usr/lib/i386-linux-gnu/libpixman-1.so.0.30.2
+ac2d2000-ac2d3000 rw-p 000a9000 08:01 9824       /usr/lib/i386-linux-gnu/libpixman-1.so.0.30.2
+ac2d3000-ac2f8000 r-xp 00000000 08:01 263476     /lib/i386-linux-gnu/libexpat.so.1.6.0
+ac2f8000-ac2f9000 ---p 00025000 08:01 263476     /lib/i386-linux-gnu/libexpat.so.1.6.0
+ac2f9000-ac2fb000 r--p 00025000 08:01 263476     /lib/i386-linux-gnu/libexpat.so.1.6.0
+ac2fb000-ac2fc000 rw-p 00027000 08:01 263476     /lib/i386-linux-gnu/libexpat.so.1.6.0
+ac2fc000-ac30f000 r-xp 00000000 08:01 263581     /lib/i386-linux-gnu/libresolv-2.19.so
+ac30f000-ac310000 ---p 00013000 08:01 263581     /lib/i386-linux-gnu/libresolv-2.19.so
+ac310000-ac311000 r--p 00013000 08:01 263581     /lib/i386-linux-gnu/libresolv-2.19.so
+ac311000-ac312000 rw-p 00014000 08:01 263581     /lib/i386-linux-gnu/libresolv-2.19.so
+ac312000-ac314000 rw-p 00000000 00:00 0 
+ac314000-ac334000 r-xp 00000000 08:01 263585     /lib/i386-linux-gnu/libselinux.so.1
+ac334000-ac335000 r--p 0001f000 08:01 263585     /lib/i386-linux-gnu/libselinux.so.1
+ac335000-ac336000 rw-p 00020000 08:01 263585     /lib/i386-linux-gnu/libselinux.so.1
+ac336000-ac337000 rw-p 00000000 00:00 0 
+ac337000-ac34f000 r-xp 00000000 08:01 263616     /lib/i386-linux-gnu/libz.so.1.2.8
+ac34f000-ac350000 r--p 00017000 08:01 263616     /lib/i386-linux-gnu/libz.so.1.2.8
+ac350000-ac351000 rw-p 00018000 08:01 263616     /lib/i386-linux-gnu/libz.so.1.2.8
+ac351000-ac359000 r-xp 00000000 08:01 9994       /usr/lib/i386-linux-gnu/libthai.so.0.2.0
+ac359000-ac35a000 r--p 00007000 08:01 9994       /usr/lib/i386-linux-gnu/libthai.so.0.2.0
+ac35a000-ac35b000 rw-p 00008000 08:01 9994       /usr/lib/i386-linux-gnu/libthai.so.0.2.0
+ac35b000-ac35e000 r-xp 00000000 08:01 9355       /usr/lib/i386-linux-gnu/libgmodule-2.0.so.0.4002.0
+ac35e000-ac35f000 r--p 00002000 08:01 9355       /usr/lib/i386-linux-gnu/libgmodule-2.0.so.0.4002.0
+ac35f000-ac360000 rw-p 00003000 08:01 9355       /usr/lib/i386-linux-gnu/libgmodule-2.0.so.0.4002.0
+ac360000-ac3fb000 r-xp 00000000 08:01 9284       /usr/lib/i386-linux-gnu/libfreetype.so.6.11.1
+ac3fb000-ac3ff000 r--p 0009a000 08:01 9284       /usr/lib/i386-linux-gnu/libfreetype.so.6.11.1
+ac3ff000-ac400000 rw-p 0009e000 08:01 9284       /usr/lib/i386-linux-gnu/libfreetype.so.6.11.1
+ac400000-ac414000 r-xp 00000000 08:01 9805       /usr/lib/i386-linux-gnu/libpangoft2-1.0.so.0.3600.3
+ac414000-ac415000 r--p 00013000 08:01 9805       /usr/lib/i386-linux-gnu/libpangoft2-1.0.so.0.3600.3
+ac415000-ac416000 rw-p 00014000 08:01 9805       /usr/lib/i386-linux-gnu/libpangoft2-1.0.so.0.3600.3
+ac416000-ac427000 r-xp 00000000 08:01 8909       /usr/lib/i386-linux-gnu/libXext.so.6.4.0
+ac427000-ac428000 r--p 00010000 08:01 8909       /usr/lib/i386-linux-gnu/libXext.so.6.4.0
+ac428000-ac429000 rw-p 00011000 08:01 8909       /usr/lib/i386-linux-gnu/libXext.so.6.4.0
+ac429000-ac559000 r-xp 00000000 08:01 8888       /usr/lib/i386-linux-gnu/libX11.so.6.3.0
+ac559000-ac55a000 r--p 00130000 08:01 8888       /usr/lib/i386-linux-gnu/libX11.so.6.3.0
+ac55a000-ac55c000 rw-p 00131000 08:01 8888       /usr/lib/i386-linux-gnu/libX11.so.6.3.0
+ac55c000-ac55d000 rw-p 00000000 00:00 0 
+ac55d000-ac67c000 r-xp 00000000 08:01 9052       /usr/lib/i386-linux-gnu/libcairo.so.2.11301.0
+ac67c000-ac67e000 r--p 0011e000 08:01 9052       /usr/lib/i386-linux-gnu/libcairo.so.2.11301.0
+ac67e000-ac67f000 rw-p 00120000 08:01 9052       /usr/lib/i386-linux-gnu/libcairo.so.2.11301.0
+ac67f000-ac680000 rw-p 00000000 00:00 0 
+ac680000-ac684000 r-xp 00000000 08:01 8911       /usr/lib/i386-linux-gnu/libXfixes.so.3.1.0
+ac684000-ac685000 r--p 00003000 08:01 8911       /usr/lib/i386-linux-gnu/libXfixes.so.3.1.0
+ac685000-ac686000 rw-p 00004000 08:01 8911       /usr/lib/i386-linux-gnu/libXfixes.so.3.1.0
+ac686000-ac68f000 r-xp 00000000 08:01 8901       /usr/lib/i386-linux-gnu/libXcursor.so.1.0.2
+ac68f000-ac690000 r--p 00008000 08:01 8901       /usr/lib/i386-linux-gnu/libXcursor.so.1.0.2
+ac690000-ac691000 rw-p 00009000 08:01 8901       /usr/lib/i386-linux-gnu/libXcursor.so.1.0.2
+ac691000-ac69a000 r-xp 00000000 08:01 8929       /usr/lib/i386-linux-gnu/libXrandr.so.2.2.0
+ac69a000-ac69b000 r--p 00008000 08:01 8929       /usr/lib/i386-linux-gnu/libXrandr.so.2.2.0
+ac69b000-ac69c000 rw-p 00009000 08:01 8929       /usr/lib/i386-linux-gnu/libXrandr.so.2.2.0
+ac69c000-ac6aa000 r-xp 00000000 08:01 8917       /usr/lib/i386-linux-gnu/libXi.so.6.1.0
+ac6aa000-ac6ab000 r--p 0000e000 08:01 8917       /usr/lib/i386-linux-gnu/libXi.so.6.1.0
+ac6ab000-ac6ac000 rw-p 0000f000 08:01 8917       /usr/lib/i386-linux-gnu/libXi.so.6.1.0
+ac6ac000-ac6b5000 r-xp 00000000 08:01 8931       /usr/lib/i386-linux-gnu/libXrender.so.1.3.0
+ac6b5000-ac6b6000 r--p 00008000 08:01 8931       /usr/lib/i386-linux-gnu/libXrender.so.1.3.0
+ac6b6000-ac6b7000 rw-p 00009000 08:01 8931       /usr/lib/i386-linux-gnu/libXrender.so.1.3.0
+ac6b7000-ac6f0000 r-xp 00000000 08:01 9258       /usr/lib/i386-linux-gnu/libfontconfig.so.1.8.0
+ac6f0000-ac6f1000 r--p 00039000 08:01 9258       /usr/lib/i386-linux-gnu/libfontconfig.so.1.8.0
+ac6f1000-ac6f2000 rw-p 0003a000 08:01 9258       /usr/lib/i386-linux-gnu/libfontconfig.so.1.8.0
+ac6f2000-ac86f000 r-xp 00000000 08:01 9339       /usr/lib/i386-linux-gnu/libgio-2.0.so.0.4002.0
+ac86f000-ac871000 r--p 0017d000 08:01 9339       /usr/lib/i386-linux-gnu/libgio-2.0.so.0.4002.0
+ac871000-ac872000 rw-p 0017f000 08:01 9339       /usr/lib/i386-linux-gnu/libgio-2.0.so.0.4002.0
+ac872000-ac873000 rw-p 00000000 00:00 0 
+ac873000-ac894000 r-xp 00000000 08:01 9319       /usr/lib/i386-linux-gnu/libgdk_pixbuf-2.0.so.0.3000.7
+ac894000-ac895000 r--p 00020000 08:01 9319       /usr/lib/i386-linux-gnu/libgdk_pixbuf-2.0.so.0.3000.7
+ac895000-ac896000 rw-p 00021000 08:01 9319       /usr/lib/i386-linux-gnu/libgdk_pixbuf-2.0.so.0.3000.7
+ac896000-ac8e0000 r-xp 00000000 08:01 9801       /usr/lib/i386-linux-gnu/libpango-1.0.so.0.3600.3
+ac8e0000-ac8e1000 ---p 0004a000 08:01 9801       /usr/lib/i386-linux-gnu/libpango-1.0.so.0.3600.3
+ac8e1000-ac8e2000 r--p 0004a000 08:01 9801       /usr/lib/i386-linux-gnu/libpango-1.0.so.0.3600.3
+ac8e2000-ac8e3000 rw-p 0004b000 08:01 9801       /usr/lib/i386-linux-gnu/libpango-1.0.so.0.3600.3
+ac8e3000-ac98e000 r-xp 00000000 08:01 9317       /usr/lib/i386-linux-gnu/libgdk-x11-2.0.so.0.2400.23
+ac98e000-ac98f000 ---p 000ab000 08:01 9317       /usr/lib/i386-linux-gnu/libgdk-x11-2.0.so.0.2400.23
+ac98f000-ac991000 r--p 000ab000 08:01 9317       /usr/lib/i386-linux-gnu/libgdk-x11-2.0.so.0.2400.23
+ac991000-ac992000 rw-p 000ad000 08:01 9317       /usr/lib/i386-linux-gnu/libgdk-x11-2.0.so.0.2400.23
+ac992000-ac9ce000 r-xp 00000000 08:01 337715     /lib/i386-linux-gnu/libpcre.so.3.13.1
+ac9ce000-ac9cf000 r--p 0003b000 08:01 337715     /lib/i386-linux-gnu/libpcre.so.3.13.1
+ac9cf000-ac9d0000 rw-p 0003c000 08:01 337715     /lib/i386-linux-gnu/libpcre.so.3.13.1
+ac9d0000-acada000 r-xp 00000000 08:01 263485     /lib/i386-linux-gnu/libglib-2.0.so.0.4002.0
+acada000-acadb000 r--p 00109000 08:01 263485     /lib/i386-linux-gnu/libglib-2.0.so.0.4002.0
+acadb000-acadc000 rw-p 0010a000 08:01 263485     /lib/i386-linux-gnu/libglib-2.0.so.0.4002.0
+acadc000-acb2c000 r-xp 00000000 08:01 9379       /usr/lib/i386-linux-gnu/libgobject-2.0.so.0.4002.0
+acb2c000-acb2d000 r--p 0004f000 08:01 9379       /usr/lib/i386-linux-gnu/libgobject-2.0.so.0.4002.0
+acb2d000-acb2e000 rw-p 00050000 08:01 9379       /usr/lib/i386-linux-gnu/libgobject-2.0.so.0.4002.0
+acb2e000-acb2f000 ---p 00000000 00:00 0 
+acb2f000-acbaf000 rwxp 00000000 00:00 0          [stack:13467]
+acbaf000-acbb2000 ---p 00000000 00:00 0 
+acbb2000-acc00000 rwxp 00000000 00:00 0          [stack:13466]
+acc00000-acd00000 rw-p 00000000 00:00 0 
+acd00000-acd02000 r-xp 00000000 08:01 8903       /usr/lib/i386-linux-gnu/libXdamage.so.1.1.0
+acd02000-acd03000 r--p 00001000 08:01 8903       /usr/lib/i386-linux-gnu/libXdamage.so.1.1.0
+acd03000-acd04000 rw-p 00002000 08:01 8903       /usr/lib/i386-linux-gnu/libXdamage.so.1.1.0
+acd04000-acd06000 r-xp 00000000 08:01 8899       /usr/lib/i386-linux-gnu/libXcomposite.so.1.0.0
+acd06000-acd07000 r--p 00001000 08:01 8899       /usr/lib/i386-linux-gnu/libXcomposite.so.1.0.0
+acd07000-acd08000 rw-p 00002000 08:01 8899       /usr/lib/i386-linux-gnu/libXcomposite.so.1.0.0
+acd08000-acd13000 r-xp 00000000 08:01 9803       /usr/lib/i386-linux-gnu/libpangocairo-1.0.so.0.3600.3
+acd13000-acd14000 r--p 0000a000 08:01 9803       /usr/lib/i386-linux-gnu/libpangocairo-1.0.so.0.3600.3
+acd14000-acd15000 rw-p 0000b000 08:01 9803       /usr/lib/i386-linux-gnu/libpangocairo-1.0.so.0.3600.3
+acd15000-acd16000 r--p 00000000 08:01 418532     /usr/share/locale-langpack/en_AU/LC_MESSAGES/gdk-pixbuf.mo
+acd16000-acd17000 r--s 0000b000 08:01 339216     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.p2.reconciler.dropins_1.1.200.v20120301-2145.jar
+acd17000-acd20000 r-xp 00000000 08:01 11666      /usr/lib/i386-linux-gnu/gtk-2.0/2.10.0/engines/libpixmap.so
+acd20000-acd21000 r--p 00008000 08:01 11666      /usr/lib/i386-linux-gnu/gtk-2.0/2.10.0/engines/libpixmap.so
+acd21000-acd22000 rw-p 00009000 08:01 11666      /usr/lib/i386-linux-gnu/gtk-2.0/2.10.0/engines/libpixmap.so
+acd22000-acd29000 r--s 00000000 08:01 11176      /usr/lib/i386-linux-gnu/gconv/gconv-modules.cache
+acd29000-acd2d000 r--p 00000000 08:01 418586     /usr/share/locale-langpack/en_AU/LC_MESSAGES/gtk20-properties.mo
+acd2d000-acd2e000 r--p 00000000 08:01 418642     /usr/share/locale-langpack/en_AU/LC_MESSAGES/libc.mo
+acd2e000-acd31000 ---p 00000000 00:00 0 
+acd31000-acdaf000 rwxp 00000000 00:00 0          [stack:13465]
+acdaf000-acdb2000 ---p 00000000 00:00 0 
+acdb2000-ace00000 rwxp 00000000 00:00 0          [stack:13464]
+ace00000-acefa000 rw-p 00000000 00:00 0 
+acefa000-acf00000 ---p 00000000 00:00 0 
+acf00000-acf02000 r--p 00000000 08:01 418587     /usr/share/locale-langpack/en_AU/LC_MESSAGES/gtk20.mo
+acf02000-acf07000 r-xp 00000000 08:01 9221       /usr/lib/i386-linux-gnu/libffi.so.6.0.1
+acf07000-acf08000 r--p 00005000 08:01 9221       /usr/lib/i386-linux-gnu/libffi.so.6.0.1
+acf08000-acf09000 rw-p 00006000 08:01 9221       /usr/lib/i386-linux-gnu/libffi.so.6.0.1
+acf09000-acf0c000 ---p 00000000 00:00 0 
+acf0c000-acf5a000 rwxp 00000000 00:00 0          [stack:13463]
+acf5a000-acf5d000 ---p 00000000 00:00 0 
+acf5d000-acfab000 rwxp 00000000 00:00 0          [stack:13462]
+acfab000-acfac000 ---p 00000000 00:00 0 
+acfac000-ad02c000 rwxp 00000000 00:00 0          [stack:13461]
+ad02c000-ad05f000 rw-p 00000000 00:00 0 
+ad05f000-ad1f0000 r--s 02a34000 08:01 339421     /home/comp6733/uniflash_3.4/eclipse/jre/lib/rt.jar
+ad1f0000-ad1fd000 rwxp 00000000 00:00 0 
+ad1fd000-ad211000 rwxp 00000000 00:00 0 
+ad211000-ad215000 rwxp 00000000 00:00 0 
+ad215000-ad22f000 rwxp 00000000 00:00 0 
+ad22f000-ad230000 rwxp 00000000 00:00 0 
+ad230000-ad231000 rwxp 00000000 00:00 0 
+ad231000-ad235000 rwxp 00000000 00:00 0 
+ad235000-ad24f000 rwxp 00000000 00:00 0 
+ad24f000-ad25c000 rwxp 00000000 00:00 0 
+ad25c000-ad26f000 rwxp 00000000 00:00 0 
+ad26f000-ad370000 rwxp 00000000 00:00 0 
+ad370000-ad750000 rwxp 00000000 00:00 0 
+ad750000-ade53000 rwxp 00000000 00:00 0 
+ade53000-b1270000 rwxp 00000000 00:00 0 
+b1270000-b2ab0000 rwxp 00000000 00:00 0 
+b2ab0000-b5270000 rwxp 00000000 00:00 0 
+b5270000-b527c000 rwxp 00000000 00:00 0 
+b527c000-b52f0000 rwxp 00000000 00:00 0 
+b52f0000-b55c0000 rwxp 00000000 00:00 0 
+b55c0000-b72f0000 rwxp 00000000 00:00 0 
+b72f0000-b72ff000 r-xp 00000000 08:01 339386     /home/comp6733/uniflash_3.4/eclipse/jre/lib/i386/libzip.so
+b72ff000-b7301000 rw-p 0000e000 08:01 339386     /home/comp6733/uniflash_3.4/eclipse/jre/lib/i386/libzip.so
+b7301000-b7324000 r-xp 00000000 08:01 339363     /home/comp6733/uniflash_3.4/eclipse/jre/lib/i386/libjava.so
+b7324000-b7326000 rw-p 00023000 08:01 339363     /home/comp6733/uniflash_3.4/eclipse/jre/lib/i386/libjava.so
+b7326000-b7331000 r-xp 00000000 08:01 263530     /lib/i386-linux-gnu/libnss_files-2.19.so
+b7331000-b7332000 r--p 0000a000 08:01 263530     /lib/i386-linux-gnu/libnss_files-2.19.so
+b7332000-b7333000 rw-p 0000b000 08:01 263530     /lib/i386-linux-gnu/libnss_files-2.19.so
+b7333000-b733d000 r-xp 00000000 08:01 263540     /lib/i386-linux-gnu/libnss_nis-2.19.so
+b733d000-b733e000 r--p 00009000 08:01 263540     /lib/i386-linux-gnu/libnss_nis-2.19.so
+b733e000-b733f000 rw-p 0000a000 08:01 263540     /lib/i386-linux-gnu/libnss_nis-2.19.so
+b733f000-b7354000 r-xp 00000000 08:01 263524     /lib/i386-linux-gnu/libnsl-2.19.so
+b7354000-b7355000 r--p 00015000 08:01 263524     /lib/i386-linux-gnu/libnsl-2.19.so
+b7355000-b7356000 rw-p 00016000 08:01 263524     /lib/i386-linux-gnu/libnsl-2.19.so
+b7356000-b7358000 rw-p 00000000 00:00 0 
+b7358000-b735a000 r-xp 00000000 08:01 8919       /usr/lib/i386-linux-gnu/libXinerama.so.1.0.0
+b735a000-b735b000 r--p 00001000 08:01 8919       /usr/lib/i386-linux-gnu/libXinerama.so.1.0.0
+b735b000-b735c000 rw-p 00002000 08:01 8919       /usr/lib/i386-linux-gnu/libXinerama.so.1.0.0
+b735c000-b7363000 r--s 00110000 08:01 339420     /home/comp6733/uniflash_3.4/eclipse/jre/lib/resources.jar
+b7363000-b7365000 r--s 0000b000 08:01 339197     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.launcher_1.3.0.v20120522-1813.jar
+b7365000-b7370000 r-xp 00000000 08:01 339385     /home/comp6733/uniflash_3.4/eclipse/jre/lib/i386/libverify.so
+b7370000-b7371000 rw-p 0000b000 08:01 339385     /home/comp6733/uniflash_3.4/eclipse/jre/lib/i386/libverify.so
+b7371000-b73b5000 r-xp 00000000 08:01 263505     /lib/i386-linux-gnu/libm-2.19.so
+b73b5000-b73b6000 r--p 00043000 08:01 263505     /lib/i386-linux-gnu/libm-2.19.so
+b73b6000-b73b7000 rw-p 00044000 08:01 263505     /lib/i386-linux-gnu/libm-2.19.so
+b73b7000-b73b8000 r--s 00042000 08:01 339145     /home/comp6733/uniflash_3.4/eclipse/plugins/com.ti.uniflash.rcp_1.0.0.201509170704.jar
+b73b8000-b73c0000 rw-s 00000000 08:01 178942     /tmp/hsperfdata_root/13460
+b73c0000-b73c7000 r-xp 00000000 08:01 263526     /lib/i386-linux-gnu/libnss_compat-2.19.so
+b73c7000-b73c8000 r--p 00006000 08:01 263526     /lib/i386-linux-gnu/libnss_compat-2.19.so
+b73c8000-b73c9000 rw-p 00007000 08:01 263526     /lib/i386-linux-gnu/libnss_compat-2.19.so
+b73c9000-b73cf000 r-xp 00000000 08:01 339388     /home/comp6733/uniflash_3.4/eclipse/jre/lib/i386/native_threads/libhpi.so
+b73cf000-b73d0000 rw-p 00006000 08:01 339388     /home/comp6733/uniflash_3.4/eclipse/jre/lib/i386/native_threads/libhpi.so
+b73d0000-b75d0000 r--p 00000000 08:01 12669      /usr/lib/locale/locale-archive
+b75d0000-b75d1000 rw-p 00000000 00:00 0 
+b75d1000-b7779000 r-xp 00000000 08:01 263454     /lib/i386-linux-gnu/libc-2.19.so
+b7779000-b777b000 r--p 001a8000 08:01 263454     /lib/i386-linux-gnu/libc-2.19.so
+b777b000-b777c000 rw-p 001aa000 08:01 263454     /lib/i386-linux-gnu/libc-2.19.so
+b777c000-b7780000 rw-p 00000000 00:00 0 
+b7780000-b7783000 r-xp 00000000 08:01 263471     /lib/i386-linux-gnu/libdl-2.19.so
+b7783000-b7784000 r--p 00002000 08:01 263471     /lib/i386-linux-gnu/libdl-2.19.so
+b7784000-b7785000 rw-p 00003000 08:01 263471     /lib/i386-linux-gnu/libdl-2.19.so
+b7785000-b779d000 r-xp 00000000 08:01 263575     /lib/i386-linux-gnu/libpthread-2.19.so
+b779d000-b779e000 r--p 00018000 08:01 263575     /lib/i386-linux-gnu/libpthread-2.19.so
+b779e000-b779f000 rw-p 00019000 08:01 263575     /lib/i386-linux-gnu/libpthread-2.19.so
+b779f000-b77a1000 rw-p 00000000 00:00 0 
+b77a1000-b77a2000 rwxp 00000000 00:00 0 
+b77a2000-b77a3000 r--p 00000000 00:00 0 
+b77a3000-b77aa000 r-xp 00000000 08:01 263583     /lib/i386-linux-gnu/librt-2.19.so
+b77aa000-b77ab000 r--p 00006000 08:01 263583     /lib/i386-linux-gnu/librt-2.19.so
+b77ab000-b77ac000 rw-p 00007000 08:01 263583     /lib/i386-linux-gnu/librt-2.19.so
+b77ac000-b77b9000 r-xp 00000000 08:01 339195     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_1.1.200.v20120522-1813/eclipse_1502.so
+b77b9000-b77ba000 rw-p 0000c000 08:01 339195     /home/comp6733/uniflash_3.4/eclipse/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_1.1.200.v20120522-1813/eclipse_1502.so
+b77ba000-b77bc000 rw-p 00000000 00:00 0 
+b77bc000-b77bd000 r-xp 00000000 00:00 0          [vdso]
+b77bd000-b77bf000 r--p 00000000 00:00 0          [vvar]
+b77bf000-b77df000 r-xp 00000000 08:01 263426     /lib/i386-linux-gnu/ld-2.19.so
+b77df000-b77e0000 r--p 0001f000 08:01 263426     /lib/i386-linux-gnu/ld-2.19.so
+b77e0000-b77e1000 rw-p 00020000 08:01 263426     /lib/i386-linux-gnu/ld-2.19.so
+bfdbd000-bfdc0000 ---p 00000000 00:00 0 
+bfdc1000-bfe0d000 rwxp 00000000 00:00 0          [stack]
+
+VM Arguments:
+jvm_args: -Dccs.debugServerDir=${RUNTIME_ROOT} -Dcom.ti.uniflash.utilities.sitara.flashProgrammerAbsPath= -DCC3XXX_XML_PATH=../cc3xxx/templates/ -DCC3XXX_SCHEMA_PATH=../cc3xxx/templates/schemas/ -DDEPENDENCY_DIR_PATH=../cc3xxx/bin/ -DPROJECT_DIR_PATH=../cc3xxx/bin/ 
+java_command: <unknown>
+Launcher Type: generic
+
+Environment Variables:
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/.:/home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/../xmldb/aet_config:/home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/../xmldb/trace_config/setup:/home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/../xmldb/trace_config/devices:/home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/../../../common/bin:/home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/../../../common/uscif:/home/comp6733/uniflash_3.4/ccs_base/emulation/analysis/bin/../../tpi
+USERNAME=root
+LD_LIBRARY_PATH=/home/comp6733/uniflash_3.4/eclipse/jre/lib/i386/client:/home/comp6733/uniflash_3.4/eclipse/jre/lib/i386:
+SHELL=/bin/bash
+DISPLAY=:0.0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x3cd180], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x3cd180], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x30ea50], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: SIG_IGN, sa_mask[0]=0x00001000, sa_flags=0x10000000
+SIGXFSZ: [libjvm.so+0x30ea50], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x30ea50], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x310f20], sa_mask[0]=0x00000000, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x310cc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x310cc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x310cc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x310cc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:jessie/sid
+
+uname:Linux 3.16.0-38-generic #52~14.04.1-Ubuntu SMP Fri May 8 09:44:48 UTC 2015 i686
+libc:glibc 2.19 NPTL 2.19 
+rlimit: STACK 8192k, CORE 0k, NPROC 7802, NOFILE 4096, AS infinity
+load average:0.13 0.09 0.15
+
+CPU:total 1 (1 cores per cpu, 1 threads per core) family 6 model 10 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3
+
+Memory: 4k page, physical 1027180k(120196k free), swap 784380k(779716k free)
+
+vm_info: Java HotSpot(TM) Client VM (11.3-b02) for linux-x86 JRE (1.6.0_13-b03), built on Mar  9 2009 01:29:45 by "java_re" with gcc 3.2.1-7a (J2SE release)
+
+time: Wed Sep 28 12:36:45 2022
+elapsed time: 2818 seconds
+
