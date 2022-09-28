@@ -64,6 +64,17 @@ PROCESS_THREAD(process1, ev, data) {
 					}
 				case 'b':
 					buz_to_turn = true;
+					if(buz_to_turn == true){
+					//printf("turning buzzer\n");		
+						buz_state = !buz_state;
+						buz_to_turn = false;
+					if(buz_state){
+						buzzer_start(buz_freq);
+						//printf("started buzzer");
+					}
+					else
+						buzzer_stop();
+  }
 					break;
 				case 'i':
 					to_increase = 3;
@@ -93,17 +104,7 @@ void do_timeout() {
 	leds_toggle(LEDS_RED);
   if(shouldToggleG)
 	leds_toggle(LEDS_GREEN);
-  if(buz_to_turn == true){
-	//printf("turning buzzer\n");		
-	buz_state = !buz_state;
-	buz_to_turn = false;
-	if(buz_state){
-		buzzer_start(buz_freq);
-		//printf("started buzzer");
-	}
-	else
-		buzzer_stop();
-  }
+
 }
 
 void do_timeout2() {
