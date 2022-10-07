@@ -63,18 +63,14 @@ PROCESS_THREAD(process1, ev, data) {
 					break;
 					}
 				case 'b':
-					buz_to_turn = true;
-					if(buz_to_turn == true){
 					//printf("turning buzzer\n");		
-						buz_state = !buz_state;
-						buz_to_turn = false;
+					buz_state = !buz_state;
 					if(buz_state){
 						buzzer_start(buz_freq);
 						//printf("started buzzer");
 					}
 					else
 						buzzer_stop();
-  }
 					break;
 				case 'i':
 					to_increase = 3;

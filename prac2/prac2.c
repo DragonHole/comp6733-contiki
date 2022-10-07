@@ -55,6 +55,21 @@ static struct ctimer timer_ctimer2; // for buzzer volume change
 void do_timeout();
 void do_timeout2();
 
+static struct ctimer hdc_timer;		//Callback timer
+static struct ctimer bmp_timer;		//Callback timer
+
+//Intialise Humidity sensor
+static void hdc_init(void *not_used) {
+	ctimer_reset(&hdc_timer);
+	SENSORS_ACTIVATE(hdc_1000_sensor);
+	humidity_val = hdc_1000_sensor.value(HDC_1000_SENSOR_TYPE_HUMIDITY);
+}
+
+static void bmp_init(void *not_used) {
+	ctimer_reset(&bmp_timer);
+	SENSORS_ACTIVATE(bmp_280_sensor);
+	pressure_val = bmp_280_sensor.value(BMP_280_SENSOR_TYPE_PRESS);
+}
 
 /*---------------------------------------------------------------------------*/
 //Input data handler
@@ -129,9 +144,9 @@ PROCESS_THREAD(process1, ev, data) {
 	cc26xx_uart_set_input(serial_line_input_byte);	//Initalise UART in serial driver
 	ctimer_set(&timer_ctimer, 2* CLOCK_SECOND, do_timeout, NULL);
 	ctimer_set(&timer_ctimer2, 1* CLOCK_SECOND, do_timeout2, NULL);
+	ctimer_set(&hdc_timer, CLOCK_SECOND*1, hdc_init, NULL);	//Callback timer for humidity sensor
+	ctimer_set(&bmp_timer, CLOCK_SECOND*1, bmp_init, NULL);	//Callback timer for pressure sensor
 	ieee_addr_cpy_to(ieee_addr, 8);
-	int pressure_val;
-	int humidity_val;
 	SENSORS_ACTIVATE(hdc_1000_sensor);
 	SENSORS_ACTIVATE(bmp_280_sensor);
 
@@ -151,74 +166,6 @@ PROCESS_THREAD(process1, ev, data) {
 	}
 	PROCESS_END();
 }
-
-
-// //Serial Interface
-// PROCESS_THREAD(process1, ev, data) {
-
-// 	PROCESS_BEGIN();
-
-// 	cc26xx_uart_set_input(serial_line_input_byte);	//Initalise UART in serial driver
-// 	ctimer_set(&timer_ctimer, 2* CLOCK_SECOND, do_timeout, NULL);
-// 	ctimer_set(&timer_ctimer2, 1* CLOCK_SECOND, do_timeout2, NULL);
-// 	ieee_addr_cpy_to(ieee_addr, 8);
-	
-//    	while(1) {
-
-//      	PROCESS_YIELD();	//Let other threads run
-
-// 		//Wait for event triggered by serial input
-     	
-// 		//******************************************
-// 		//NOTE: MUST HOLD CTRL and then press ENTER 
-// 		//at the end of typing for the serial driver 
-// 		//to work. Serial driver expects 0x0A as
-// 		//last character, to tigger the event.
-// 		//******************************************
-// 		if(ev == serial_line_event_message) {
-//        		printf("received line: %s\n\r", (char *)data);
-// 			switch(*(char*)data){
-// 				case 'r':
-// 					shouldToggleR = !shouldToggleR;
-// 					break;
-// 				case 'g':
-// 					shouldToggleG = !shouldToggleG;
-// 					break;
-// 				case 'a': {
-// 					shouldToggleR = !shouldToggleR;
-// 					shouldToggleG = !shouldToggleG;
-// 					break;
-// 				}
-// 				case 'b': {
-// 					buz_to_turn = true;
-// 					if(buz_to_turn == true){
-// 					//printf("turning buzzer\n");		
-// 						buz_state = !buz_state;
-// 						buz_to_turn = false;
-// 					}
-// 					if(buz_state){
-// 						buzzer_start(buz_freq);
-// 						//printf("started buzzer");
-// 					}
-// 					else
-// 						buzzer_stop();
-//   				}
-// 					break;
-// 				case 'i':
-// 					to_increase = 3;
-// 					break;
-// 				case 'd':
-// 					to_decrease = 3;
-// 					break;
-// 				case 'n':
-// 					for(int i = 0; i<8;i++)
-// 					    printf("%02hhX ", ieee_addr[i]);
-// 					printf("\n");
-// 			}
-//      	}
-//    	}
-//    	PROCESS_END();
-// }
 
 
 void do_timeout() {
@@ -251,18 +198,12 @@ void do_timeout2() {
 	}
 	if(humidity_samp_to_take > 0){
 		humidity_samp_to_take -= 1;
-		humidity_val = hdc_1000_sensor.value(HDC_1000_SENSOR_TYPE_HUMIDITY);		//Read Humidity value
-
 		sprintf(str, "Humidity=%d.%02d \n\r", humidity_val/100, humidity_val%100);
 		tcp_socket_send_str(&socket, str);	//Reflect byte
 	}
 	if(pressure_samp_to_take > 0){
 		pressure_samp_to_take -= 1;
-		pressure_val = bmp_280_sensor.value(BMP_280_SENSOR_TYPE_PRESS);		//Read Humidity value
-
 		sprintf(str, "Pressure=%d.%02d \n\r", pressure_val/100, pressure_val%100);
 		tcp_socket_send_str(&socket, str);	//Reflect byte
 	}
 }
-	
-
